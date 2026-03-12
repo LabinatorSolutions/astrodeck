@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
   font-family: 'Geist';
@@ -86,29 +87,3 @@ mark {
   color: oklch(95% 0.02 150);
 }
 
-/* Ensure proper text contrast in dark mode */
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-  color: var(--color-foreground);
-}
-
-.dark p,
-.dark li,
-.dark td,
-.dark th,
-.dark blockquote {
-  color: var(--color-foreground);
-}
-
-/* Prose typography dark mode adjustments */
-.dark .prose {
-  --tw-prose-body: var(--color-foreground);
-  --tw-prose-headings: var(--color-foreground);
-  --tw-prose-bold: var(--color-foreground);
-  --tw-prose-quotes: var(--color-muted-foreground);
-  --tw-prose-code: var(--color-foreground);
-}

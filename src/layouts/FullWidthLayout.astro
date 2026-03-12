@@ -11,6 +11,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import SEO from "@/components/SEO.astro";
 import FontPreload from "@/components/FontPreload.astro";
+import ThemeScript from "@/components/ThemeScript.astro";
 
 interface Props {
   title: string;
@@ -41,32 +42,7 @@ const fullTitle = `${title} | AstroDeck`;
       image={image}
     />
     <ViewTransitions />
-    <script is:inline>
-      // Prevent flash of wrong theme - respects explicit user choice over system preference
-      (function() {
-        const theme = localStorage.getItem("theme");
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else if (theme === "light") {
-          document.documentElement.classList.remove("dark");
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.documentElement.classList.add("dark");
-        }
-      })();
-      // Re-apply theme after View Transitions navigation
-      document.addEventListener("astro:after-swap", function() {
-        const theme = localStorage.getItem("theme");
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else if (theme === "light") {
-          document.documentElement.classList.remove("dark");
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      });
-    </script>
+    <ThemeScript />
   </head>
   <body class="min-h-screen flex flex-col antialiased">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md font-medium">

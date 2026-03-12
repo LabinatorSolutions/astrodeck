@@ -4,7 +4,9 @@
 <button
   class="theme-toggle inline-flex items-center justify-center rounded-md h-9 w-9 text-foreground/60 hover:text-foreground hover:bg-accent transition-colors"
   type="button"
-  aria-label="Toggle theme"
+  role="switch"
+  aria-checked="false"
+  aria-label="Dark mode"
 >
   <svg
     class="sun-icon h-5 w-5"
@@ -40,43 +42,30 @@
   </svg>
 </button>
 
+<style>
+  .sun-icon { display: none; }
+  .moon-icon { display: block; }
+  :global(.dark) .sun-icon { display: block; }
+  :global(.dark) .moon-icon { display: none; }
+</style>
+
 <script>
-  function updateAllIcons() {
+  function updateAriaStates() {
     const isDark = document.documentElement.classList.contains("dark");
-    const allSunIcons = document.querySelectorAll<HTMLElement>(".sun-icon");
-    const allMoonIcons = document.querySelectorAll<HTMLElement>(".moon-icon");
-
-    allSunIcons.forEach(sunIcon => {
-      if (isDark) {
-        // Dark mode: show sun icon (to switch to light)
-        sunIcon.style.display = "block";
-      } else {
-        // Light mode: hide sun icon
-        sunIcon.style.display = "none";
-      }
-    });
-
-    allMoonIcons.forEach(moonIcon => {
-      if (isDark) {
-        // Dark mode: hide moon icon
-        moonIcon.style.display = "none";
-      } else {
-        // Light mode: show moon icon (to switch to dark)
-        moonIcon.style.display = "block";
-      }
+    document.querySelectorAll<HTMLButtonElement>(".theme-toggle").forEach(toggle => {
+      toggle.setAttribute("aria-checked", String(isDark));
     });
   }
 
   function initThemeToggles() {
-    const toggles = document.querySelectorAll(".theme-toggle");
+    updateAriaStates();
 
-    // Set initial icon state for all toggles
-    updateAllIcons();
+    document.querySelectorAll(".theme-toggle").forEach(toggle => {
+      const newToggle = toggle.cloneNode(true) as Element;
+      toggle.replaceWith(newToggle);
 
-    toggles.forEach(toggle => {
-      toggle.addEventListener("click", () => {
+      newToggle.addEventListener("click", () => {
         const isDark = document.documentElement.classList.contains("dark");
-
         if (isDark) {
           document.documentElement.classList.remove("dark");
           localStorage.setItem("theme", "light");
@@ -84,16 +73,26 @@
           document.documentElement.classList.add("dark");
           localStorage.setItem("theme", "dark");
         }
-
-        // Update all icons after toggle
-        updateAllIcons();
+        updateAriaStates();
       });
     });
   }
 
-  // Run on initial load
   initThemeToggles();
 
-  // Re-run after View Transitions navigation
-  document.addEventListener("astro:after-swap", initThemeToggles);
+  if (!window.__themeToggleInit) {
+    window.__themeToggleInit = true;
+    document.addEventListener("astro:after-swap", initThemeToggles);
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+      if (!localStorage.getItem("theme")) {
+        if (e.matches) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+        updateAriaStates();
+      }
+    });
+  }
 </script>
