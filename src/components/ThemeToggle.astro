@@ -43,8 +43,8 @@
 <script>
   function updateAllIcons() {
     const isDark = document.documentElement.classList.contains("dark");
-    const allSunIcons = document.querySelectorAll(".sun-icon");
-    const allMoonIcons = document.querySelectorAll(".moon-icon");
+    const allSunIcons = document.querySelectorAll<HTMLElement>(".sun-icon");
+    const allMoonIcons = document.querySelectorAll<HTMLElement>(".moon-icon");
 
     allSunIcons.forEach(sunIcon => {
       if (isDark) {
