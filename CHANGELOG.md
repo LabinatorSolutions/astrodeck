@@ -2,6 +2,15 @@
 
 All notable changes to AstroDeck are documented in this file.
 
+## [2.0.1] - 2026-03-14
+
+### Added
+
+- Changelog page with timeline design at `/changelog`
+- Changelog link in main navigation
+
+---
+
 ## [2.0.0] - 2026-03-14
 
 ### Breaking Changes

@@ -1,6 +1,6 @@
 # AstroDeck
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/holger1411/astrodeck/releases)
+[![Version](https://img.shields.io/badge/version-2.0.1-blue.svg)](https://github.com/holger1411/astrodeck/releases)
 [![Astro](https://img.shields.io/badge/Astro-6.x-orange.svg)](https://astro.build)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -118,11 +118,11 @@ Download the latest release directly:
 
 ```bash
 # Download the latest version
-wget https://github.com/holger1411/astrodeck/archive/refs/tags/v2.0.0.zip
+wget https://github.com/holger1411/astrodeck/archive/refs/tags/v2.0.1.zip
 
 # Extract
-unzip v2.0.0.zip
-cd astrodeck-2.0.0
+unzip v2.0.1.zip
+cd astrodeck-2.0.1
 
 # Install and run
 npm install
