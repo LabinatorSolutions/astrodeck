@@ -243,7 +243,7 @@ All recommended platforms include global CDN distribution automatically.
 
 ### Build Fails
 
-1. Check Node.js version (18.14.1+ required)
+1. Check Node.js version (22+ required)
 2. Clear cache and rebuild
 3. Check for TypeScript errors locally
 

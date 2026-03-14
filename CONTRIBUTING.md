@@ -465,7 +465,7 @@ If applicable
 ## Environment
 - OS: [e.g., macOS 14.1]
 - Browser: [e.g., Chrome 120]
-- Node version: [e.g., 18.17.0]
+- Node version: [e.g., 22.0.0]
 - AstroDeck version: [e.g., 1.0.0]
 
 ## Additional Context

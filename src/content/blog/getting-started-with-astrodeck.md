@@ -14,7 +14,7 @@ Welcome to AstroDeck! This guide will walk you through setting up your new proje
 
 Before you begin, make sure you have:
 
-- **Node.js** 18.14.1 or higher
+- **Node.js** 22.0.0 or higher
 - **npm**, **pnpm**, or **yarn** package manager
 - A code editor (we recommend VS Code)
 
@@ -67,10 +67,10 @@ astrodeck/
 This is where all your design tokens live. Colors, fonts, spacing - everything is customizable using CSS variables with OKLCH color format:
 
 ```css
-:root {
-  --primary: oklch(55% 0.2 250);
-  --background: oklch(100% 0 0);
-  --foreground: oklch(10% 0 0);
+@theme {
+  --color-primary: oklch(55% 0.2 250);
+  --color-background: oklch(100% 0 0);
+  --color-foreground: oklch(10% 0 0);
 }
 ```
 
@@ -91,8 +91,8 @@ Let's change the primary color to make the site your own:
 3. Change `--primary` to your brand color:
 
 ```css
-:root {
-  --primary: oklch(60% 0.15 145);  /* A nice green */
+@theme {
+  --color-primary: oklch(60% 0.15 145);  /* A nice green */
 }
 ```
 
