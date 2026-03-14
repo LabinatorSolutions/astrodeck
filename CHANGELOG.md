@@ -1,0 +1,136 @@
+# Changelog
+
+All notable changes to AstroDeck are documented in this file.
+
+## [2.0.0] - 2026-03-14
+
+### Breaking Changes
+
+- **Astro 6.0** - Upgraded from Astro 5.x to 6.0.4 (requires Vite 7)
+- **Node.js 22+** - Minimum Node.js version raised from 18 to 22
+- **@astrojs/react 5.0** - Upgraded from 4.x to 5.0.0
+
+### Migration Guide
+
+These changes are required when upgrading from v1.x:
+
+1. **Update Node.js** to version 22 or higher
+2. **Zod imports** - Change `import { z } from 'astro:content'` to `import { z } from 'astro/zod'`
+3. **View Transitions** - Change `ViewTransitions` to `ClientRouter` from `astro:transitions`
+4. Run `npm install` to update all dependencies
+
+### Changed
+
+- Migrated all layouts from `ViewTransitions` to `ClientRouter` (BaseLayout, FullWidthLayout, AuthLayout, MinimalLayout)
+- Updated content config to import `z` from `astro/zod`
+- Updated all documentation for Astro 6 (README, AGENTS.md, CONTRIBUTING.md, blog posts)
+- Rewrote `/theme` command for OKLCH/Tailwind v4 (`--color-` prefix, `@theme` directive)
+- Enhanced `/audit` command with Astro 6 deprecation checks
+- Improved AstroDeck agent with tech stack context, migration checklist, and deprecated pattern detection
+- Fixed AGENTS.md theme system docs from HSL to OKLCH format
+- Updated CSS examples in blog posts from `:root` to `@theme` directive
+
+### Dependency Updates
+
+| Package | From | To |
+|---------|------|-----|
+| astro | ^5.16.6 | ^6.0.4 |
+| @astrojs/react | ^4.4.2 | ^5.0.0 |
+| @astrojs/sitemap | ^3.6.0 | ^3.7.1 |
+| @astrojs/rss | ^4.0.14 | ^4.0.17 |
+
+---
+
+## [1.5.2] - 2025-12-28
+
+### Fixed
+
+- Refactored dark mode system and theme architecture
+- Fixed TypeScript error with HTMLElement generic on querySelectorAll (TS2339)
+
+## [1.5.1] - 2025-12-27
+
+### Fixed
+
+- Improved muted-foreground contrast in light mode
+- Dark mode contrast improvements and theme persistence fix
+- Updated cover.png for OG preview and README
+
+## [1.5.0] - 2025-12-26
+
+### Added
+
+- Functional copy-code buttons to sections page with imports
+
+### Changed
+
+- Updated dependencies (Astro 5.16.15, security fixes)
+
+### Fixed
+
+- README download link and installation option numbering
+
+## [1.4.0] - 2025-12-25
+
+### Added
+
+- Content Layer API migration for future Astro v6 compatibility
+
+## [1.3.0] - 2025-12-24
+
+### Added
+
+- MinimalLayout for standalone pages (404, maintenance, landing)
+- Comprehensive SEO support (OpenGraph, Twitter Cards, canonical URLs, sitemap, RSS)
+- PROJECT.md for user-specific AI instructions
+- Responsive header with hamburger menu
+- MCP server documentation (Astro Docs, shadcn/ui)
+
+### Fixed
+
+- Handle undefined Astro.site in SEO component
+
+### Changed
+
+- Phase 2-4 improvements: content, pages, DX, code quality, performance
+
+## [1.2.0] - 2025-12-22
+
+### Added
+
+- Claude Code AI Agent for project assistance
+- AI tools grid with Gemini CLI and VS Code support
+- Git workflow rules to AGENTS.md
+- AI feature section on homepage
+
+### Changed
+
+- Consolidated AI guidelines into AGENTS.md standard
+- Redesigned AI tools grid to match Features section style
+
+## [1.1.0] - 2025-12-20
+
+### Added
+
+- AI-friendly development documentation (AGENTS.md)
+- Vercel Analytics integration
+- Comprehensive README documentation
+
+### Changed
+
+- Migrated to Tailwind CSS v4.1.18
+- Redesigned features section with grid layout
+- Updated footer with Pages, Built With, and Creator sections
+
+## [1.0.0] - 2025-12-18
+
+### Added
+
+- Initial release
+- Pre-built sections: Hero, CTA, Features, Pricing, Testimonials, Newsletter, LogoCloud
+- Layouts: BaseLayout, FullWidthLayout, AuthLayout
+- shadcn/ui components: Button, Card, Badge, Input, Label
+- Dark mode with theme persistence
+- Blog with Content Collections
+- TypeScript support
+- ESLint and Prettier configuration
