@@ -181,7 +181,7 @@ const tagStyles: Record<string, { bg: string; text: string; label: string }> = {
               class:list={[
                 "absolute left-0 rounded-full border-2 border-background",
                 index === 0
-                  ? "top-1.5 w-[19px] h-[19px] bg-primary -ml-[2px]"
+                  ? "top-1.5 w-[19px] h-[19px] bg-primary -ml-[2px] animate-pulse"
                   : "top-2 w-[15px] h-[15px]",
                 index !== 0 && (release.tag === "major" ? "bg-primary" : "bg-muted-foreground/40"),
               ]}
