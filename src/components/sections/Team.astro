@@ -94,7 +94,11 @@ const socialIcons = {
     </div>
 
     <div
-      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      class:list={[
+        "grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
+        members.length > 3 && "xl:grid-cols-4",
+        members.length <= 3 && "max-w-4xl mx-auto",
+      ]}
     >
       {
         members.map((member) => (

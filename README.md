@@ -12,12 +12,22 @@ AstroDeck provides pre-built, production-ready components that help you launch l
 
 ---
 
+## 🧱 Building Blocks
+
+AstroDeck uses a three-tier architecture. Everything you need to build a website falls into one of these tiers:
+
+| Tier | What | Count | Location |
+|------|------|-------|----------|
+| **Components** | Small UI primitives (Button, Dialog, Tabs...) | 11 | `src/components/ui/` |
+| **Sections** | Full page sections (Hero, Pricing, FAQ...) | 16 | `src/components/sections/` |
+| **Pages** | Complete page templates (SaaS, Portfolio...) | 11 | `src/pages/` |
+
+**Components** are the smallest pieces — buttons, inputs, cards, dialogs. **Sections** combine components into full-width blocks like a pricing table or FAQ accordion. **Pages** assemble sections into complete, production-ready websites.
+
 ## 🚀 Features
 
 - **🤖 AI-Friendly Development** - AGENTS.md standard + multi-agent compatibility (Claude Code, Cursor, Copilot, Windsurf) helps you build faster with any AI assistant
-- **16 Pre-built Sections** - 3 Hero variants, FAQ, Stats, Team, Comparison, Contact, Newsletter, and more
-- **11 UI Components** - Button, Card, Badge, Input, Label, Dialog, Accordion, Tabs, Tooltip, Select, DropdownMenu (shadcn/ui + Radix UI)
-- **4 Template Pages** - SaaS, Portfolio, Startup, and Contact ready-to-use page templates
+- **Three-Tier Architecture** - Components, Sections, and Pages provide building blocks at every level of abstraction
 - **Multiple Layout Templates** - Boxed, Full-Width, Minimal, Auth, and Article layouts for different page types
 - **Fully Responsive** - Mobile-first design that looks great on all devices
 - **Dark Mode Support** - Built-in theme switching with persistent preferences
@@ -471,9 +481,23 @@ Then use in components:
 
 ## 🎨 Component Library
 
-AstroDeck includes 16 production-ready section components. Visit `/sections` in your browser to see all components with live previews.
+AstroDeck's building blocks are organized into three tiers. Visit `/sections` in your browser to see sections with live previews.
 
-### Available Sections
+### Tier 1: Components (11) — `src/components/ui/`
+
+Small, reusable React UI primitives built with shadcn/ui and Radix UI. Use with `client:load` for interactivity.
+
+- **Button, Card, Badge, Input, Label** - Core primitives
+- **Dialog** - Modal with backdrop blur
+- **Accordion** - Radix-based accordion
+- **Tabs** - Pill-style tabs
+- **Tooltip** - Popup tooltips
+- **Select** - Styled dropdown select
+- **DropdownMenu** - Positioned dropdown menu
+
+### Tier 2: Sections (16) — `src/components/sections/`
+
+Full-width page sections that combine layout, typography, and content into complete visual blocks. Drop them into any page and pass your content as props.
 
 #### Hero Sections (3 variants)
 - **Hero.astro** - Centered hero with GitHub grid pattern background
@@ -488,8 +512,6 @@ AstroDeck includes 16 production-ready section components. Visit `/sections` in 
 - **ContentBlock.astro** - Flexible content block
 - **LogoCloud.astro** - Brand logo showcase
 - **AIFeature.astro** - AI feature highlight
-
-#### New Sections (v3.0.0)
 - **FAQ.astro** - CSS-only accordion with Schema.org LD+JSON for SEO
 - **Stats.astro** - Metrics grid with semantic `dl`/`dd`/`dt` markup
 - **Team.astro** - Team member cards with social links
@@ -497,24 +519,27 @@ AstroDeck includes 16 production-ready section components. Visit `/sections` in 
 - **Newsletter.astro** - Email signup form
 - **Contact.astro** - Two-column contact form
 
-### UI Components (11 total)
+### Tier 3: Pages (11) — `src/pages/`
 
-Built with shadcn/ui and Radix UI:
+Complete, production-ready pages that combine multiple sections with a layout. Copy a template page and customize the section props and content.
 
-- **Button, Card, Badge, Input, Label** - Core components
-- **Dialog** - Modal with backdrop blur
-- **Accordion** - Radix-based accordion
-- **Tabs** - Pill-style tabs
-- **Tooltip** - Popup tooltips
-- **Select** - Styled dropdown select
-- **DropdownMenu** - Positioned dropdown menu
+- **Homepage** (`/`) - Main landing page
+- **SaaS Landing** (`/templates/saas`) - SaaS product page
+- **Portfolio** (`/templates/portfolio`) - Portfolio/agency page
+- **Startup** (`/templates/startup`) - Product launch page
+- **Contact** (`/templates/contact`) - Contact page template
+- **Blog** (`/blog`) - Blog listing + individual posts
+- **Docs** (`/docs`) - Documentation page
+- **Login** (`/login`) - Authentication page
+- **Sections Library** (`/sections`) - Live component previews
+- **Changelog** (`/changelog`) - Version history
+- **Privacy** (`/privacy`) - Privacy policy
 
-### Using Sections in Your Pages
-
-Copy any section from `/sections` or use them directly:
+### How the Tiers Work Together
 
 ```astro
 ---
+// A Page assembles Sections, which may use Components internally
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/sections/Hero.astro";
 import Pricing from "@/components/sections/Pricing.astro";

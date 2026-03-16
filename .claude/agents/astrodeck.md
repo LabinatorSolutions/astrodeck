@@ -28,6 +28,25 @@ Jede Änderung wird gemessen und validiert. Der Agent lernt aus Ergebnissen und 
 - **shadcn/ui + Radix UI** for interactive React components
 - **ClientRouter** for view transitions (NOT ViewTransitions)
 
+## Three-Tier Architecture (Components / Sections / Pages)
+
+AstroDeck organizes building blocks into three tiers. Route every request to the correct tier:
+
+| User Asks For | Tier | Location | Example |
+|---------------|------|----------|---------|
+| "a button", "an input", "a dialog" | **Component** | `src/components/ui/` | `button.tsx`, `dialog.tsx` |
+| "a pricing section", "a hero", "an FAQ" | **Section** | `src/components/sections/` | `Pricing.astro`, `FAQ.astro` |
+| "a landing page", "a contact page" | **Page** | `src/pages/` | `templates/saas.astro` |
+
+**Decision guide:**
+- Is it a reusable primitive (button, input, badge)? --> Component in `src/components/ui/`
+- Is it a full-width page block (hero, pricing, FAQ)? --> Section in `src/components/sections/`
+- Is it a complete page combining multiple sections? --> Page in `src/pages/`
+
+**Composition:** Pages import Sections, which may internally use Components.
+
+**Counts:** 11 Components, 16 Sections (+ 3 Hero variants), 11 Pages.
+
 ## Skill-Routing
 
 Bei jeder Aufgabe den passenden Skill konsultieren:

@@ -3,6 +3,7 @@ import FullWidthLayout from "@/layouts/FullWidthLayout.astro";
 
 const sections = [
   { id: "getting-started", label: "Getting Started" },
+  { id: "building-blocks", label: "Building Blocks" },
   { id: "create-page", label: "Create a New Page" },
   { id: "add-section", label: "Add a Section" },
   { id: "custom-component", label: "Custom Component" },
@@ -129,7 +130,77 @@ npm run dev</code></pre>
           </div>
         </section>
 
-        <!-- 2. Create a New Page -->
+        <!-- 2. Building Blocks -->
+        <section id="building-blocks" class="scroll-mt-32 lg:scroll-mt-20">
+          <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2">Building Blocks</h2>
+            <p class="text-muted-foreground">AstroDeck uses a three-tier architecture. Everything you build with falls into one of these tiers.</p>
+          </div>
+
+          <!-- Three-tier overview table -->
+          <div class="border rounded-xl p-6 bg-card overflow-x-auto mb-8">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b text-left">
+                  <th class="pb-2 pr-4 font-medium text-muted-foreground">Tier</th>
+                  <th class="pb-2 pr-4 font-medium text-muted-foreground">What</th>
+                  <th class="pb-2 pr-4 font-medium text-muted-foreground">Count</th>
+                  <th class="pb-2 font-medium text-muted-foreground">Location</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr><td class="py-3 pr-4 font-semibold">Components</td><td class="py-3 pr-4 text-muted-foreground">Small UI primitives (Button, Dialog, Tabs...)</td><td class="py-3 pr-4">11</td><td class="py-3 font-mono text-xs">src/components/ui/</td></tr>
+                <tr><td class="py-3 pr-4 font-semibold">Sections</td><td class="py-3 pr-4 text-muted-foreground">Full page sections (Hero, Pricing, FAQ...)</td><td class="py-3 pr-4">16</td><td class="py-3 font-mono text-xs">src/components/sections/</td></tr>
+                <tr><td class="py-3 pr-4 font-semibold">Pages</td><td class="py-3 pr-4 text-muted-foreground">Complete page templates (SaaS, Portfolio...)</td><td class="py-3 pr-4">11</td><td class="py-3 font-mono text-xs">src/pages/</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Three code examples -->
+          <div class="space-y-6">
+            <div class="border rounded-xl p-6 bg-card">
+              <h3 class="font-semibold mb-1">Tier 1: Component</h3>
+              <p class="text-sm text-muted-foreground mb-3">Small, reusable React UI primitives from shadcn/ui + Radix UI. Use with <code class="text-xs font-mono bg-muted px-1.5 py-0.5 rounded">client:load</code> for interactivity.</p>
+              <pre class="bg-muted/50 border border-border rounded-xl p-4 overflow-x-auto"><code class="text-sm font-mono">---
+import {'{'} Button {'}'} from "@/components/ui/button";
+---
+&lt;Button client:load variant="outline" size="lg"&gt;Click me&lt;/Button&gt;</code></pre>
+            </div>
+
+            <div class="border rounded-xl p-6 bg-card">
+              <h3 class="font-semibold mb-1">Tier 2: Section</h3>
+              <p class="text-sm text-muted-foreground mb-3">Full-width page blocks that combine layout, typography, and content. Drop them into any page and pass content as props.</p>
+              <pre class="bg-muted/50 border border-border rounded-xl p-4 overflow-x-auto"><code class="text-sm font-mono">---
+import FAQ from "@/components/sections/FAQ.astro";
+---
+&lt;FAQ
+  title="Frequently Asked Questions"
+  faqs={'{'}[
+    {'{'} question: "Is it free?", answer: "Yes, MIT licensed." {'}'}
+  ]{'}'}
+/&gt;</code></pre>
+            </div>
+
+            <div class="border rounded-xl p-6 bg-card">
+              <h3 class="font-semibold mb-1">Tier 3: Page</h3>
+              <p class="text-sm text-muted-foreground mb-3">Complete pages that assemble multiple sections with a layout. Copy a template and customize the props.</p>
+              <pre class="bg-muted/50 border border-border rounded-xl p-4 overflow-x-auto"><code class="text-sm font-mono">---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import Features from "@/components/sections/Features.astro";
+import CTA from "@/components/sections/CTA.astro";
+---
+&lt;BaseLayout title="My Page"&gt;
+  &lt;Hero title="Welcome" subtitle="..." /&gt;
+  &lt;Features title="Features" features={'{'}[...]{'}'}  /&gt;
+  &lt;CTA title="Get Started" description="..."
+    cta={'{'}{'{'} href: "/signup", label: "Sign Up" {'}'}{'}'}  /&gt;
+&lt;/BaseLayout&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Create a New Page -->
         <section id="create-page" class="scroll-mt-32 lg:scroll-mt-20">
           <div class="mb-8">
             <h2 class="text-3xl font-bold mb-2">Create a New Page</h2>

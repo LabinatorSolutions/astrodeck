@@ -2,6 +2,22 @@
 
 All notable changes to AstroDeck are documented in this file.
 
+## [3.0.1] - 2026-03-16
+
+### Added
+
+- Components page (`/components`) with full-width layout, sticky sidebar navigation, and live demos for Button, Badge, Card, Input & Label
+- Code snippets with copy-to-clipboard for all 11 UI components
+- Three-tier architecture documentation (Components / Sections / Pages) in README, AGENTS.md, docs, and Claude agent
+- CTA section on homepage with Download and GitHub buttons
+- Stats section on homepage showing project metrics (16 sections, 11 components, 11 pages, 5 AI agents)
+
+### Changed
+
+- Download button now uses `/releases/latest` URL — never needs updating on new releases
+- Navigation order: Home, Pages, Sections, Components, Docs, Changelog
+- Team section grid auto-centers when 3 or fewer members
+
 ## [3.0.0] - 2026-03-16
 
 ### Added

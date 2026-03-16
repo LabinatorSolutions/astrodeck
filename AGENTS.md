@@ -157,16 +157,49 @@ pnpm dlx shadcn@latest mcp init --client claude
 
 ---
 
+## Three-Tier Architecture
+
+AstroDeck organizes its building blocks into three tiers. Understanding these tiers is critical for routing requests correctly.
+
+| Tier | What | Count | Location | When to Use |
+|------|------|-------|----------|-------------|
+| **Components** | Small UI primitives (Button, Dialog, Tabs...) | 11 | `src/components/ui/` | User asks for a button, input, card, modal |
+| **Sections** | Full-width page blocks (Hero, Pricing, FAQ...) | 16 | `src/components/sections/` | User asks for a pricing section, FAQ, hero |
+| **Pages** | Complete page templates (SaaS, Portfolio...) | 11 | `src/pages/` | User asks for a landing page, contact page |
+
+**Decision guide for new elements:**
+- Is it a reusable primitive (button, input, badge)? --> **Component** in `src/components/ui/`
+- Is it a full-width page block (hero, pricing table, FAQ)? --> **Section** in `src/components/sections/`
+- Is it a complete page combining multiple sections? --> **Page** in `src/pages/`
+
+**How they compose:** Pages import Sections, which may internally use Components. A typical page looks like:
+
+```astro
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import Features from "@/components/sections/Features.astro";
+import CTA from "@/components/sections/CTA.astro";
+---
+<BaseLayout title="My Page">
+  <Hero title="Welcome" subtitle="..." />
+  <Features title="Features" features={[...]} />
+  <CTA title="Get Started" description="..." cta={{ href: "/signup", label: "Sign Up" }} />
+</BaseLayout>
+```
+
+---
+
 ## Project Structure
 
 ```
 astrodeck/
 ├── src/
 │   ├── components/
-│   │   ├── sections/          # 16 pre-built page sections (3 Hero variants, FAQ, Stats, Team, etc.)
-│   │   └── ui/                # 11 shadcn/ui React components (Button, Card, Dialog, Accordion, etc.)
+│   │   ├── sections/          # TIER 2: 16 page sections (3 Hero variants, FAQ, Stats, Team, etc.)
+│   │   └── ui/                # TIER 1: 11 shadcn/ui React components (Button, Card, Dialog, etc.)
 │   ├── layouts/               # 5 page templates (Base, FullWidth, Minimal, Auth, Article)
-│   ├── pages/                 # File-based routing (index.astro → /)
+│   ├── pages/                 # TIER 3: 11 complete pages with file-based routing
 │   │   └── templates/         # Template pages (saas, portfolio, startup, contact)
 │   ├── content/               # Content Collections (blog posts)
 │   ├── styles/

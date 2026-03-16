@@ -41,13 +41,25 @@ npm run build  # Build for production
 npm run preview # Preview production build
 ```
 
+### Three-Tier Architecture
+
+AstroDeck uses a three-tier hierarchy of building blocks:
+
+| Tier | What | Count | Location |
+|------|------|-------|----------|
+| **Components** | Small UI primitives (Button, Dialog, Tabs...) | 11 | `src/components/ui/` |
+| **Sections** | Full page sections (Hero, Pricing, FAQ...) | 16 | `src/components/sections/` |
+| **Pages** | Complete page templates (SaaS, Portfolio...) | 11 | `src/pages/` |
+
+Components are the smallest pieces. Sections combine components into full-width blocks. Pages assemble sections into complete websites.
+
 ### Project Structure
 ```
 src/
-├── components/sections/  # Hero, CTA, Features, Pricing, etc.
-├── components/ui/        # shadcn/ui components
+├── components/sections/  # TIER 2: Hero, CTA, Features, Pricing, FAQ, etc.
+├── components/ui/        # TIER 1: shadcn/ui components (Button, Card, Dialog...)
 ├── layouts/              # BaseLayout, FullWidthLayout, AuthLayout, ArticleLayout
-├── pages/                # File-based routing
+├── pages/                # TIER 3: Complete pages with file-based routing
 ├── content/              # Content Collections (blog)
 ├── styles/globals.css    # Design tokens
 └── lib/utils.ts          # Utility functions
