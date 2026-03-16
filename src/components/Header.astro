@@ -23,14 +23,7 @@ const { variant = 'boxed' } = Astro.props;
 
 const navItems = [
   { href: '/', label: 'Home' },
-  {
-    label: 'Pages',
-    children: [
-      { href: '/blog', label: 'Blog' },
-      { href: '/content', label: 'Content' },
-      { href: '/login', label: 'Login' },
-    ],
-  },
+  { href: '/pages', label: 'Pages' },
   { href: '/docs', label: 'Docs' },
   { href: '/sections', label: 'Sections' },
   { href: '/changelog', label: 'Changelog' },

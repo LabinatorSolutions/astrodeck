@@ -188,7 +188,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <section id="add-section" class="scroll-mt-32 lg:scroll-mt-20">
           <div class="mb-8">
             <h2 class="text-3xl font-bold mb-2">Add a Section Component</h2>
-            <p class="text-muted-foreground">AstroDeck ships with 15+ pre-built sections. Import them into any page and pass your content as props.</p>
+            <p class="text-muted-foreground">AstroDeck ships with 16 pre-built sections (including 3 Hero variants, FAQ, Stats, Team, Comparison, Contact, and Newsletter). Import them into any page and pass your content as props.</p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="border rounded-xl p-6 bg-card">
@@ -553,16 +553,20 @@ npm run preview</code></pre>
             <pre class="text-sm font-mono leading-relaxed"><code>astrodeck/
 ├── src/
 │   ├── components/
-│   │   ├── sections/      15+ pre-built page sections
-│   │   └── ui/            shadcn/ui components (Button, Card, Badge...)
+│   │   ├── sections/      16 pre-built page sections (3 Hero variants + 13 more)
+│   │   └── ui/            11 shadcn/ui components (Button, Card, Dialog, Accordion...)
 │   ├── layouts/           Page templates (Base, FullWidth, Auth, Minimal, Article)
 │   ├── pages/             File-based routing — each .astro file = one route
 │   ├── content/blog/      Markdown blog posts with Content Collections
 │   ├── styles/globals.css Design tokens, OKLCH colors, Tailwind config
+│   ├── registry.json      Machine-readable component catalog
 │   └── lib/utils.ts       Utility functions
 ├── public/                Static assets (fonts, images, favicon)
 ├── AGENTS.md              AI assistant instructions (AGENTS.md standard)
 ├── PROJECT.md             Your project-specific AI overrides
+├── .cursor/rules          Cursor AI rules
+├── .github/copilot-instructions.md  GitHub Copilot instructions
+├── .windsurfrules         Windsurf AI rules
 ├── astro.config.mjs       Astro + Vite + integrations config
 └── package.json           Dependencies and npm scripts</code></pre>
           </div>

@@ -12,6 +12,7 @@ import Footer from "@/components/Footer.astro";
 import SEO from "@/components/SEO.astro";
 import FontPreload from "@/components/FontPreload.astro";
 import ThemeScript from "@/components/ThemeScript.astro";
+import AnimationObserver from "@/components/AnimationObserver.astro";
 
 interface Props {
   title: string;
@@ -53,5 +54,6 @@ const fullTitle = `${title} | AstroDeck`;
       <slot />
     </main>
     <Footer variant="fullWidth" />
+    <AnimationObserver />
   </body>
 </html>

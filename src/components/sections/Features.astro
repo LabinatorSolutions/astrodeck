@@ -58,7 +58,7 @@ const iconPaths: Record<string, string> = {
 
 <section class="py-20 px-6">
   <div class="container max-w-5xl mx-auto">
-    <div class="flex flex-col items-center space-y-4 text-center">
+    <div class="flex flex-col items-center space-y-4 text-center" data-animate>
       <h2 class="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">
         {title}
       </h2>
@@ -74,8 +74,8 @@ const iconPaths: Record<string, string> = {
       class="grid gap-px sm:grid-cols-2 md:grid-cols-3 mt-12 bg-border overflow-hidden rounded-xl border shadow-lg"
     >
       {
-        features.map((feature) => (
-          <div class="relative overflow-hidden bg-card px-10 py-12">
+        features.map((feature, index) => (
+          <div class="relative overflow-hidden bg-card px-10 py-12" data-animate data-delay={String(Math.min(index + 1, 5))}>
             <div class="inline-flex p-1.5 border border-foreground rounded-xl mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

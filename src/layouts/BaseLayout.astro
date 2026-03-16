@@ -37,6 +37,7 @@ import SEO from "@/components/SEO.astro";
 import FontPreload from "@/components/FontPreload.astro";
 import ThemeScript from "@/components/ThemeScript.astro";
 import Analytics from "@vercel/analytics/astro";
+import AnimationObserver from "@/components/AnimationObserver.astro";
 
 interface Props {
   title: string;
@@ -88,5 +89,6 @@ const fullTitle = `${title} | AstroDeck`;
     </main>
     <Footer />
     <Analytics />
+    <AnimationObserver />
   </body>
 </html>

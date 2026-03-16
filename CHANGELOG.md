@@ -2,6 +2,36 @@
 
 All notable changes to AstroDeck are documented in this file.
 
+## [3.0.0] - 2026-03-16
+
+### Added
+
+- **6 new section components**: FAQ (with Schema.org LD+JSON), Stats, Team, Comparison, Newsletter, Contact
+- **2 new Hero variants**: HeroSplit (split layout with visual mockup) and HeroGradient (animated gradient glow orbs)
+- **6 new shadcn/ui components**: Dialog, Accordion, Tabs, Tooltip, Select, DropdownMenu (all via Radix UI)
+- **4 page templates**: SaaS Landing, Portfolio/Agency, Startup/Product Launch, Contact — each with unique Hero variant
+- **Pages overview** (`/pages`): central page gallery with screenshot previews for all pages
+- **Multi-agent compatibility**: `.cursor/rules`, `.github/copilot-instructions.md`, `.windsurfrules` generated from AGENTS.md
+- **Component registry**: `src/registry.json` — machine-readable catalog of all sections, UI components, layouts, and page templates
+- **CSS animation system**: `data-animate` attributes with scroll-triggered animations (fade, slide-left, slide-right, scale) and stagger delays
+- **Section background variants**: `section-muted` (gray) and `section-inverted` (dark bg/light text, auto-inverts in dark mode)
+- **AnimationObserver component**: IntersectionObserver-based animation trigger with `prefers-reduced-motion` support
+
+### Changed
+
+- Tailwind CSS updated from v4.1.18 to v4.2.1
+- All template pages use BaseLayout (boxed header/footer) instead of FullWidthLayout
+- Navigation simplified: "Pages" is now a direct link to `/pages` overview (no dropdown)
+- "Templates" added as separate dropdown in header with 4 template links
+- Template pages now use alternating section backgrounds (muted, inverted) for visual rhythm
+- Contact template reduced to essentials: inverted contact form + FAQ only
+- `tailwindcss-animate` plugin removed (incompatible with Tailwind v4), replaced with pure CSS animation utilities
+
+### Breaking
+
+- Navigation restructured — "Pages" dropdown removed, replaced with flat link + "Templates" dropdown
+- FullWidthLayout no longer used for template pages
+
 ## [2.0.4] - 2026-03-15
 
 ### Added

@@ -66,14 +66,14 @@ AstroDeck is designed to be AI-friendly and serves as your **starting point** fo
 
 ```
 ┌─────────────────────────────────────┐
-│         Astro v6.x (latest)         │  ← Framework (island architecture)
+│       Astro v6.0.4 (latest)         │  ← Framework (island architecture)
 ├─────────────────────────────────────┤
-│    Tailwind CSS v4.x (latest)       │  ← Styling (utility-first)
+│    Tailwind CSS v4.2.1 (latest)     │  ← Styling (utility-first)
 │         via @tailwindcss/vite       │  ← Uses Vite plugin (NOT Astro integration)
 ├─────────────────────────────────────┤
-│    shadcn/ui + Radix UI             │  ← UI Components (React)
+│  shadcn/ui + Radix UI (6 packages)  │  ← UI Components (React)
 ├─────────────────────────────────────┤
-│         TypeScript (latest)         │  ← Type Safety
+│       TypeScript 5.9.3              │  ← Type Safety
 └─────────────────────────────────────┘
 ```
 
@@ -163,16 +163,21 @@ pnpm dlx shadcn@latest mcp init --client claude
 astrodeck/
 ├── src/
 │   ├── components/
-│   │   ├── sections/          # Pre-built page sections (Hero, CTA, Pricing, etc.)
-│   │   └── ui/                # shadcn/ui React components (Button, Card, etc.)
-│   ├── layouts/               # Page templates (BaseLayout, FullWidthLayout, AuthLayout)
+│   │   ├── sections/          # 16 pre-built page sections (3 Hero variants, FAQ, Stats, Team, etc.)
+│   │   └── ui/                # 11 shadcn/ui React components (Button, Card, Dialog, Accordion, etc.)
+│   ├── layouts/               # 5 page templates (Base, FullWidth, Minimal, Auth, Article)
 │   ├── pages/                 # File-based routing (index.astro → /)
+│   │   └── templates/         # Template pages (saas, portfolio, startup, contact)
 │   ├── content/               # Content Collections (blog posts)
 │   ├── styles/
 │   │   └── globals.css        # Design tokens + Tailwind v4 @theme
+│   ├── registry.json          # Machine-readable component catalog
 │   └── lib/
 │       └── utils.ts           # Helper functions (cn, etc.)
 ├── public/                    # Static assets (fonts, favicon)
+├── .cursor/rules              # Cursor AI rules
+├── .github/copilot-instructions.md  # GitHub Copilot instructions
+├── .windsurfrules             # Windsurf AI rules
 ├── astro.config.mjs           # Astro configuration
 └── tsconfig.json              # TypeScript configuration
 ```
@@ -384,6 +389,108 @@ git push origin main
 
 ---
 
+## Animation System
+
+AstroDeck includes a CSS-only scroll animation system using `data-animate` attributes. No JavaScript library required.
+
+```astro
+<!-- Fade in on scroll -->
+<div data-animate>Content fades in</div>
+
+<!-- Specific animation variants -->
+<div data-animate="fade-up">Slides up while fading in</div>
+<div data-animate="fade-down">Slides down while fading in</div>
+```
+
+Animations trigger automatically when elements enter the viewport via CSS `@keyframes` and `IntersectionObserver`.
+
+---
+
+## Section Background Variants
+
+Use these CSS classes on `<section>` elements to alternate visual rhythm:
+
+| Class | Effect |
+|-------|--------|
+| `section-muted` | Gray/subtle background (uses `--color-muted`) |
+| `section-inverted` | Swaps foreground/background colors (dark section in light mode, light section in dark mode) |
+
+```astro
+<section class="section-muted py-20 px-6">
+  <!-- Gray background section -->
+</section>
+
+<section class="section-inverted py-20 px-6">
+  <!-- Inverted colors section -->
+</section>
+```
+
+---
+
+## Component Registry
+
+`src/registry.json` provides a machine-readable catalog of all sections and UI components. Useful for tooling integration and AI agents to discover available components programmatically.
+
+---
+
+## Available Section Components
+
+| Component | Description |
+|-----------|-------------|
+| `Hero.astro` | Centered hero with GitHub grid pattern |
+| `HeroSplit.astro` | Split layout, text left, visual right |
+| `HeroGradient.astro` | Animated gradient glow orbs background |
+| `Features.astro` | Feature grid with icons |
+| `Pricing.astro` | Pricing table with tiers |
+| `Testimonials.astro` | Customer testimonial cards |
+| `CTA.astro` | Call-to-action section |
+| `ContentBlock.astro` | Flexible content block |
+| `LogoCloud.astro` | Brand logo showcase |
+| `AIFeature.astro` | AI feature highlight |
+| `FAQ.astro` | CSS-only accordion with Schema.org LD+JSON |
+| `Stats.astro` | Metrics grid with semantic dl/dd/dt |
+| `Team.astro` | Team member cards with social links |
+| `Comparison.astro` | Feature comparison table |
+| `Newsletter.astro` | Email signup form |
+| `Contact.astro` | Two-column contact form |
+
+## Available UI Components
+
+| Component | Description |
+|-----------|-------------|
+| `button.tsx` | Primary, secondary, outline, ghost variants |
+| `card.tsx` | Card container with header, content, footer |
+| `badge.tsx` | Status and label badges |
+| `input.tsx` | Form text input |
+| `label.tsx` | Form label |
+| `dialog.tsx` | Modal with backdrop blur |
+| `accordion.tsx` | Radix-based accordion |
+| `tabs.tsx` | Pill-style tabs |
+| `tooltip.tsx` | Popup tooltips |
+| `select.tsx` | Styled dropdown select |
+| `dropdown-menu.tsx` | Positioned dropdown menu |
+
+## Available Page Routes
+
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage |
+| `/pages` | Central pages overview with screenshot cards |
+| `/sections` | Section component library |
+| `/docs` | Documentation |
+| `/changelog` | Changelog |
+| `/blog` | Blog listing |
+| `/templates/saas` | SaaS landing page template |
+| `/templates/portfolio` | Portfolio/agency template |
+| `/templates/startup` | Product launch template |
+| `/templates/contact` | Contact page template |
+| `/login` | Login page |
+| `/content` | Content page |
+| `/privacy` | Privacy policy |
+| `/404` | Custom 404 page |
+
+---
+
 ## Do's and Don'ts
 
 ### ✅ Always Do
@@ -533,7 +640,7 @@ When something doesn't work, check:
   - 📦 Installation options (degit, ZIP download, GitHub clone)
   - 🚀 Deployment guides (Vercel, Netlify, Cloudflare, GitHub Pages)
   - 🔍 Troubleshooting common issues (port conflicts, module errors, dark mode, TypeScript)
-  - 🎨 Component library catalog (15+ pre-built sections with variants)
+  - 🎨 Component library catalog (16 sections + 11 UI components)
   - 🏗️ Build optimization tips and performance best practices
   - 📊 Analytics integration examples (Google Analytics, Vercel Analytics)
   - 🤖 Detailed AI-friendly development guide

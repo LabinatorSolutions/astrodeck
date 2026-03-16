@@ -55,7 +55,7 @@ const { title, subtitle, tiers } = Astro.props;
 
 <section class="py-24">
   <div class="container max-w-5xl mx-auto">
-    <div class="flex flex-col items-center space-y-4 text-center">
+    <div class="flex flex-col items-center space-y-4 text-center" data-animate>
       <h2 class="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">
         {title}
       </h2>
@@ -66,8 +66,10 @@ const { title, subtitle, tiers } = Astro.props;
       )}
     </div>
     <div class="grid gap-6 mt-12 lg:grid-cols-3">
-    {tiers.map((tier) => (
+    {tiers.map((tier, index) => (
       <div
+        data-animate
+        data-delay={String(Math.min(index + 1, 5))}
         class:list={[
           "flex flex-col rounded-lg border bg-card p-6",
           tier.highlighted && "border-primary shadow-2xl shadow-primary/20 scale-105",

@@ -1,6 +1,6 @@
 # AstroDeck
 
-[![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)](https://github.com/holger1411/astrodeck/releases)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)](https://github.com/holger1411/astrodeck/releases)
 [![Astro](https://img.shields.io/badge/Astro-6.x-orange.svg)](https://astro.build)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -14,13 +14,17 @@ AstroDeck provides pre-built, production-ready components that help you launch l
 
 ## 🚀 Features
 
-- **🤖 AI-Friendly Development** - AGENTS.md standard + dedicated Claude Code Agent helps you build faster with any AI assistant
-- **15+ Pre-built Sections** - Heroes, CTAs, Pricing Tables, Testimonials, Newsletters, and more
-- **Multiple Layout Templates** - Boxed, Full-Width, Minimal, and Auth layouts for different page types
+- **🤖 AI-Friendly Development** - AGENTS.md standard + multi-agent compatibility (Claude Code, Cursor, Copilot, Windsurf) helps you build faster with any AI assistant
+- **16 Pre-built Sections** - 3 Hero variants, FAQ, Stats, Team, Comparison, Contact, Newsletter, and more
+- **11 UI Components** - Button, Card, Badge, Input, Label, Dialog, Accordion, Tabs, Tooltip, Select, DropdownMenu (shadcn/ui + Radix UI)
+- **4 Template Pages** - SaaS, Portfolio, Startup, and Contact ready-to-use page templates
+- **Multiple Layout Templates** - Boxed, Full-Width, Minimal, Auth, and Article layouts for different page types
 - **Fully Responsive** - Mobile-first design that looks great on all devices
 - **Dark Mode Support** - Built-in theme switching with persistent preferences
 - **TypeScript** - Full type safety throughout the codebase
-- **shadcn/ui Components** - Beautiful, accessible React components integrated with Astro
+- **shadcn/ui Components** - Beautiful, accessible React components integrated with Astro (6 Radix UI packages)
+- **Animation System** - CSS-only scroll animations via `data-animate` attributes
+- **Component Registry** - Machine-readable `src/registry.json` catalog for tooling integration
 - **Lightning Fast** - Astro's zero-JS by default approach for optimal performance
 - **SEO Optimized** - Built-in OpenGraph, Twitter Cards, sitemap, RSS feed, and canonical URLs
 - **Code Quality Tools** - ESLint and Prettier configured for Astro and TypeScript
@@ -118,11 +122,11 @@ Download the latest release directly:
 
 ```bash
 # Download the latest version
-wget https://github.com/holger1411/astrodeck/archive/refs/tags/v2.0.1.zip
+wget https://github.com/holger1411/astrodeck/archive/refs/tags/v3.0.0.zip
 
 # Extract
-unzip v2.0.1.zip
-cd astrodeck-2.0.1
+unzip v3.0.0.zip
+cd astrodeck-3.0.0
 
 # Install and run
 npm install
@@ -210,20 +214,17 @@ astrodeck/
 │   └── fonts/
 ├── src/
 │   ├── components/         # Reusable components
-│   │   ├── sections/       # Page sections (Hero, CTA, etc.)
-│   │   │   ├── Hero.astro
-│   │   │   ├── CTA.astro
-│   │   │   ├── Features.astro
-│   │   │   ├── Pricing.astro
-│   │   │   ├── Testimonials.astro
-│   │   │   ├── LogoCloud.astro
-│   │   │   └── ContentBlock.astro
-│   │   ├── ui/             # shadcn/ui components
-│   │   │   ├── button.tsx
-│   │   │   ├── card.tsx
-│   │   │   ├── badge.tsx
-│   │   │   ├── input.tsx
-│   │   │   └── label.tsx
+│   │   ├── sections/       # Page sections (16 components)
+│   │   │   ├── Hero.astro / HeroSplit.astro / HeroGradient.astro
+│   │   │   ├── Features.astro, Pricing.astro, Testimonials.astro
+│   │   │   ├── CTA.astro, ContentBlock.astro, LogoCloud.astro
+│   │   │   ├── AIFeature.astro, FAQ.astro, Stats.astro
+│   │   │   ├── Team.astro, Comparison.astro
+│   │   │   ├── Newsletter.astro, Contact.astro
+│   │   ├── ui/             # shadcn/ui components (11 components)
+│   │   │   ├── button.tsx, card.tsx, badge.tsx, input.tsx, label.tsx
+│   │   │   ├── dialog.tsx, accordion.tsx, tabs.tsx
+│   │   │   ├── tooltip.tsx, select.tsx, dropdown-menu.tsx
 │   │   ├── Header.astro    # Main site header
 │   │   ├── Footer.astro    # Main site footer
 │   │   ├── ThemeToggle.astro
@@ -236,8 +237,16 @@ astrodeck/
 │   │   └── ArticleLayout.astro   # Blog/article layout
 │   ├── pages/              # File-based routing
 │   │   ├── index.astro     # Homepage (/)
+│   │   ├── pages.astro     # Pages overview (/pages)
 │   │   ├── sections.astro  # Section library (/sections)
+│   │   ├── docs.astro      # Documentation (/docs)
+│   │   ├── changelog.astro # Changelog (/changelog)
 │   │   ├── blog/           # Blog pages
+│   │   ├── templates/      # Template pages
+│   │   │   ├── saas.astro      # SaaS landing page (/templates/saas)
+│   │   │   ├── portfolio.astro # Portfolio/agency (/templates/portfolio)
+│   │   │   ├── startup.astro   # Product launch (/templates/startup)
+│   │   │   └── contact.astro   # Contact page (/templates/contact)
 │   │   ├── 404.astro       # Custom 404 page
 │   │   ├── login.astro     # Login page (/login)
 │   │   ├── privacy.astro   # Privacy page (/privacy)
@@ -247,6 +256,7 @@ astrodeck/
 │   ├── lib/                # Utilities
 │   │   └── utils.ts        # Helper functions
 │   └── env.d.ts            # TypeScript definitions
+├── src/registry.json       # Machine-readable component catalog
 ├── astro.config.mjs        # Astro configuration
 ├── tsconfig.json           # TypeScript configuration
 └── package.json            # Dependencies and scripts
@@ -461,35 +471,43 @@ Then use in components:
 
 ## 🎨 Component Library
 
-AstroDeck includes 15+ production-ready sections. Visit `/sections` in your browser to see all components with live previews.
+AstroDeck includes 16 production-ready section components. Visit `/sections` in your browser to see all components with live previews.
 
 ### Available Sections
 
 #### Hero Sections (3 variants)
-- **Centered with Badge** - Classic hero with announcement badge
-- **Left Aligned** - Split layout with content and visual
-- **Minimal with Stats** - Clean design with social proof metrics
+- **Hero.astro** - Centered hero with GitHub grid pattern background
+- **HeroSplit.astro** - Split layout with text left, visual right
+- **HeroGradient.astro** - Animated gradient glow orbs background
 
-#### Call-to-Action (3 variants)
-- **Simple Centered** - Focused conversion section
-- **Split with Features** - CTA with feature highlights
-- **Banner Style** - Bottom banner for conversions
+#### Content Sections
+- **Features.astro** - Feature grid with icons
+- **Pricing.astro** - Pricing table with tiers
+- **Testimonials.astro** - Customer testimonial cards
+- **CTA.astro** - Call-to-action section
+- **ContentBlock.astro** - Flexible content block
+- **LogoCloud.astro** - Brand logo showcase
+- **AIFeature.astro** - AI feature highlight
 
-#### Pricing Tables (4 variants)
-- **AstroDeck Open Source** - Free tier showcase
-- **Three Column** - Standard pricing grid
-- **Comparison Table** - Feature comparison layout
-- **Monthly/Yearly Toggle** - Pricing with billing toggle
+#### New Sections (v3.0.0)
+- **FAQ.astro** - CSS-only accordion with Schema.org LD+JSON for SEO
+- **Stats.astro** - Metrics grid with semantic `dl`/`dd`/`dt` markup
+- **Team.astro** - Team member cards with social links
+- **Comparison.astro** - Feature comparison table
+- **Newsletter.astro** - Email signup form
+- **Contact.astro** - Two-column contact form
 
-#### Testimonials (3 variants)
-- **Grid Layout** - Multiple testimonials in a grid
-- **Featured Single** - Highlight one customer story
-- **Horizontal Scroll** - Scrollable testimonial cards
+### UI Components (11 total)
 
-#### Newsletters (3 variants)
-- **Simple Inline** - Classic email capture
-- **Split with Visual** - Newsletter with image
-- **Bottom Bar** - Minimal footer signup
+Built with shadcn/ui and Radix UI:
+
+- **Button, Card, Badge, Input, Label** - Core components
+- **Dialog** - Modal with backdrop blur
+- **Accordion** - Radix-based accordion
+- **Tabs** - Pill-style tabs
+- **Tooltip** - Popup tooltips
+- **Select** - Styled dropdown select
+- **DropdownMenu** - Positioned dropdown menu
 
 ### Using Sections in Your Pages
 
@@ -959,6 +977,10 @@ astrodeck/
 ├── PROJECT.md              # 🎯 YOUR project customizations (HIGHEST PRIORITY)
 ├── AGENTS.md              # 📄 AstroDeck defaults (all AI tools)
 ├── .cursorrules           # 🔗 Symlink → AGENTS.md (Cursor)
+├── .cursor/rules          # 📄 Cursor rules directory
+├── .github/copilot-instructions.md  # 📄 GitHub Copilot instructions
+├── .windsurfrules         # 📄 Windsurf rules
+├── src/registry.json      # 📦 Machine-readable component catalog
 └── .claude/
     ├── agents/
     │   └── astrodeck.md   # 🤖 Claude Code Agent (quality guardian)
@@ -1016,7 +1038,7 @@ See `PROJECT.md` for a complete template with examples.
 #### `AGENTS.md` - AstroDeck Defaults
 
 The main configuration file containing:
-- Project overview and tech stack (Astro v6, Tailwind v4)
+- Project overview and tech stack (Astro v6.0.4, Tailwind v4.2.1)
 - Code conventions and patterns
 - Import aliases and file organization
 - Do's and Don'ts for code generation
