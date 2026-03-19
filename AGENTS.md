@@ -608,7 +608,9 @@ import { Button } from "@/components/ui/button";
 2. Edit CSS variables under `:root` (light) and `.dark` (dark)
 3. Changes apply to entire design system automatically
 
-### Release a New Version
+### Release a New Version (AstroDeck Framework Only)
+
+> This applies to AstroDeck framework releases only — projects built with AstroDeck will have their own release process.
 
 A release requires updating **4 places** — missing any breaks the website:
 
