@@ -569,6 +569,7 @@ Jeder Task-Typ hat eine definierte Skill-Chain. **Kein Task ist fertig, bevor di
 | Theme-Änderung | tailwind → ui-design → accessibility |
 | Blog-Content | content-seo → accessibility |
 | Bugfix/Refactor | qa (am Ende) |
+| Release | package.json → Hero.astro → changelog.astro → CHANGELOG.md → build → commit → tag → push → gh release |
 
 **Bedeutung:** Jeder Skill in der Chain muss konsultiert und seine Regeln eingehalten werden — in der angegebenen Reihenfolge. Wird ein Skill übersprungen, ist der Task nicht abgeschlossen.
 
@@ -606,6 +607,19 @@ import { Button } from "@/components/ui/button";
 1. Open `src/styles/globals.css`
 2. Edit CSS variables under `:root` (light) and `.dark` (dark)
 3. Changes apply to entire design system automatically
+
+### Release a New Version
+
+A release requires updating **4 places** — missing any breaks the website:
+
+1. **`package.json`** — bump `"version"` field
+2. **`src/components/sections/Hero.astro`** — update hardcoded version badge (line ~116)
+3. **`src/pages/changelog.astro`** — add new entry to `releases[]` array at the TOP
+4. **`CHANGELOG.md`** — add new entry at the top (for GitHub/npm consumers)
+
+Then: `npm run build` → commit → `git tag vX.Y.Z` → push → `gh release create`
+
+**Non-Negotiable:** All 4 places must be updated in the SAME commit. A release without updating Hero and changelog.astro is incomplete.
 
 ---
 
