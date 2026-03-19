@@ -2,6 +2,18 @@
 
 All notable changes to AstroDeck are documented in this file.
 
+## [3.0.4] - 2026-03-19
+
+### Fixed
+
+- Hero badge and changelog page stuck at v3.0.1 after v3.0.2/v3.0.3 releases
+
+### Added
+
+- Release process documentation in AGENTS.md with all 4 required update locations
+- Release entry in Skill Chains table
+- Clarification that release process applies to AstroDeck framework only
+
 ## [3.0.3] - 2026-03-19
 
 ### Added
