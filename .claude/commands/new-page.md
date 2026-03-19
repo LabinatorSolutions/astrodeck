@@ -33,6 +33,15 @@ const description = "[SEO description, 150-160 chars]";
 
 Für Patterns: `astro` und `content-seo` Skills konsultieren (`.claude/skills/astro/SKILL.md`, `.claude/skills/content-seo/SKILL.md`).
 
+## Navigation
+
+By default, every new page must be added to the navigation (unless the user explicitly says otherwise):
+
+- **Header:** `src/components/Header.astro` → add to `navItems` array
+- **Footer:** `src/components/Footer.astro` → add to appropriate column (`astrodeckLinks` or `pageLinks`)
+
+Only skip navigation for pages that are clearly internal (login, 404, legal).
+
 ## Checklist Before Done
 
 - [ ] File created in `src/pages/[name].astro`
@@ -40,3 +49,4 @@ Für Patterns: `astro` und `content-seo` Skills konsultieren (`.claude/skills/as
 - [ ] Title and description set for SEO
 - [ ] All sections imported and configured
 - [ ] Responsive design verified
+- [ ] Added to Header and Footer navigation (unless user said otherwise)

@@ -56,6 +56,14 @@ const variantClasses = {
 
 Für Patterns: `astro` und `ui-design` Skills konsultieren (`.claude/skills/astro/SKILL.md`, `.claude/skills/ui-design/SKILL.md`).
 
+## Placement
+
+A section that isn't on a page is invisible. After creating the component:
+
+1. Ask the user where to place it — or add it to the most logical page with example data
+2. Never leave a new section unplaced without explicitly telling the user
+3. If placing on an existing page, import the component and add it in a sensible position
+
 ## Checklist Before Done
 
 - [ ] File created in `src/components/sections/[Name].astro`
@@ -64,3 +72,4 @@ Für Patterns: `astro` und `ui-design` Skills konsultieren (`.claude/skills/astr
 - [ ] Responsive classes (mobile-first)
 - [ ] Supports light and dark mode
 - [ ] Uses `<slot />` for flexible content
+- [ ] Section placed on a page (or user explicitly told where/why not)

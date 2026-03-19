@@ -73,7 +73,7 @@ const structuredData = {
 
     <div class="faq-list divide-y divide-border border-y border-border" data-animate data-delay="1">
       {
-        faqs.map((faq, index) => (
+        faqs.map((faq) => (
           <details class="faq-item group" name="faq">
             <summary class="flex cursor-pointer items-center justify-between gap-4 py-5 text-left font-medium text-foreground transition-colors hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm">
               <span class="text-base sm:text-lg">{faq.question}</span>

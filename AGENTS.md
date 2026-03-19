@@ -583,6 +583,10 @@ Jeder Task-Typ hat eine definierte Skill-Chain. **Kein Task ist fertig, bevor di
 2. Import appropriate layout
 3. Add sections as needed
 4. File name = URL route (`about.astro` → `/about`)
+5. **Add to navigation** (unless the user explicitly says otherwise):
+   - `src/components/Header.astro` — add to `navItems` array (line ~25)
+   - `src/components/Footer.astro` — add to appropriate column (`astrodeckLinks` or `pageLinks`, line ~25)
+6. Navigation is the default — only skip if the user says "don't add to nav" or the page is clearly internal (e.g. login, 404)
 
 ### Create a New Section
 
@@ -590,6 +594,11 @@ Jeder Task-Typ hat eine definierte Skill-Chain. **Kein Task ist fertig, bevor di
 2. Follow the section template pattern above
 3. Use semantic HTML and responsive Tailwind classes
 4. Support light and dark mode via CSS variables
+5. **Place it on a page** — a section component that isn't visible is useless. Either:
+   - Add it to the page the user is discussing (most common)
+   - Add it to the homepage with example data
+   - Ask the user where to place it if unclear
+6. Never leave a new section component unplaced without explicitly telling the user
 
 ### Add a shadcn/ui Component
 

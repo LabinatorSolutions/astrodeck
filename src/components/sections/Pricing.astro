@@ -53,10 +53,10 @@ interface Props {
 const { title, subtitle, tiers } = Astro.props;
 ---
 
-<section class="py-24">
+<section class="py-20 px-6" aria-labelledby="pricing-heading">
   <div class="container max-w-5xl mx-auto">
     <div class="flex flex-col items-center space-y-4 text-center" data-animate>
-      <h2 class="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">
+      <h2 id="pricing-heading" class="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">
         {title}
       </h2>
       {subtitle && (
@@ -65,18 +65,18 @@ const { title, subtitle, tiers } = Astro.props;
         </p>
       )}
     </div>
-    <div class="grid gap-6 mt-12 lg:grid-cols-3">
+    <div class="grid gap-6 mt-12 md:grid-cols-2 lg:grid-cols-3">
     {tiers.map((tier, index) => (
       <div
         data-animate
         data-delay={String(Math.min(index + 1, 5))}
         class:list={[
-          "flex flex-col rounded-lg border bg-card p-6",
-          tier.highlighted && "border-primary shadow-2xl shadow-primary/20 scale-105",
+          "flex flex-col rounded-xl border bg-card p-6",
+          tier.highlighted && "border-primary shadow-2xl shadow-primary/20 lg:scale-105",
         ]}
       >
         <div class="mb-4">
-          <h3 class="text-xl font-bold">{tier.name}</h3>
+          <h3 class="text-xl font-semibold">{tier.name}</h3>
           <p class="text-sm text-muted-foreground mt-1">{tier.description}</p>
         </div>
         <div class="mb-6">
@@ -95,6 +95,7 @@ const { title, subtitle, tiers } = Astro.props;
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="h-4 w-4 text-primary"
+                aria-hidden="true"
               >
                 <polyline points="20 6 9 17 4 12" />
               </svg>

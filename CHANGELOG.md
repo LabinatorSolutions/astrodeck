@@ -2,6 +2,21 @@
 
 All notable changes to AstroDeck are documented in this file.
 
+## [3.0.5] - 2026-03-19
+
+### Added
+
+- Live interactive demos for all 6 React components on /components page (Dialog, Accordion, Tabs, Tooltip, Select, Dropdown Menu)
+- New page creation defaults to adding Header + Footer navigation
+- New section creation requires placement on a page
+- AI test framework with dynamic test cases from docs and variance rules
+
+### Fixed
+
+- Pricing section: rounded-lg → rounded-xl, font-bold → font-semibold on h3, py-24 → py-20 px-6, added md:grid-cols-2 tablet step, lg:scale-105 only in 3-col grid, aria-hidden on decorative SVGs
+- FAQ section: removed unused index parameter
+- Components page: removed unused catch parameter
+
 ## [3.0.4] - 2026-03-19
 
 ### Fixed
