@@ -656,6 +656,42 @@ import { Button } from "@/components/ui/button";
 2. Edit CSS variables under `:root` (light) and `.dark` (dark)
 3. Changes apply to entire design system automatically
 
+### Rebrand for Your Own Project
+
+When a user forks or clones AstroDeck to build their own website, "AstroDeck" branding must be replaced throughout the project. This is **critical for SEO** — without it, canonical URLs, Open Graph tags, sitemaps, and robots.txt all point to astrodeck.dev instead of the user's domain.
+
+**When to trigger:** User says "set up my own project", "rebrand", "change the name", "use my own domain", "customize for my site", or starts changing the site name/domain. Also trigger proactively when you notice `PROJECT.md` defines a different product name than "AstroDeck".
+
+**Required changes (all files relative to project root):**
+
+| # | File | What to change | Example |
+|---|------|----------------|---------|
+| 1 | `astro.config.mjs` | `site` URL | `'https://astrodeck.dev'` → `'https://mysite.com'` |
+| 2 | `src/components/SEO.astro` | `author` default (line ~38) | `'AstroDeck'` → `'My Company'` |
+| 3 | `src/components/SEO.astro` | `siteName` constant (line ~47) | `'AstroDeck'` → `'My Company'` |
+| 4 | `src/components/SEO.astro` | RSS feed title (line ~87) | `'AstroDeck Blog RSS Feed'` → `'My Company Blog'` |
+| 5 | `src/layouts/BaseLayout.astro` | Default description (line ~53) | `'AstroDeck - Modern...'` → project description |
+| 6 | `public/robots.txt` | Comment + Sitemap URL | `astrodeck.dev` → user's domain |
+| 7 | `src/components/Header.astro` | Logo text / brand name | `'AstroDeck'` → user's name |
+| 8 | `src/components/Footer.astro` | Brand name + links | `'AstroDeck'` → user's name |
+| 9 | `public/site.webmanifest` | `name` and `short_name` | `'AstroDeck'` → user's name |
+| 10 | `package.json` | `name` field | `'astrodeck'` → user's project name |
+
+**Verification — run after all changes:**
+```bash
+grep -rn "AstroDeck\|astrodeck" src/ public/ astro.config.mjs package.json --include="*.astro" --include="*.ts" --include="*.js" --include="*.json" --include="*.txt" --include="*.mjs" | grep -v node_modules | grep -v CHANGELOG | grep -v AGENTS
+```
+Zero product-name hits = done. Hits in CHANGELOG.md and AGENTS.md are fine (historical references).
+
+**Also replace:**
+- `public/favicon.svg` and PNG favicons with the user's own
+- `public/cover.png` (OG image) with the user's own
+- `public/logo.svg` / `public/logo-white.svg` with the user's logos
+
+**Why this matters:** Without this rebranding, all generated meta tags (canonical, og:url, og:site_name, twitter:url), the sitemap XML, and robots.txt will reference astrodeck.dev. Search engines will see the wrong canonical domain, social sharing previews will show "AstroDeck" instead of the user's brand, and the sitemap will point crawlers to the wrong URLs.
+
+---
+
 ### Release a New Version (AstroDeck Framework Only)
 
 > This applies to AstroDeck framework releases only — projects built with AstroDeck will have their own release process.
