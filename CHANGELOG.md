@@ -2,6 +2,13 @@
 
 All notable changes to AstroDeck are documented in this file.
 
+## [3.1.1] - 2026-04-06
+
+### Changed
+
+- Updated Astro from 6.0.6 to 6.1.3
+- Updated Tailwind CSS from 4.2.1 to 4.2.2
+
 ## [3.1.0] - 2026-03-26
 
 ### Added
